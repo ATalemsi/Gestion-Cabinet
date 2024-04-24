@@ -129,6 +129,18 @@
       <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/gestion_de_cabinet-api/vendor/barryvdh/laravel-dompdf" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

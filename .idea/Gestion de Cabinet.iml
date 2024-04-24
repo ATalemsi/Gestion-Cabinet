@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/composer" />
@@ -120,8 +122,23 @@
       <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/barryvdh/laravel-ide-helper" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/barryvdh/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/phpdocumentor/reflection-common" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/phpstan/phpdoc-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/barryvdh/laravel-dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/dompdf/dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/masterminds/html5" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/phenx/php-font-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/phenx/php-svg-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion_de_cabinet-api/vendor/sabberworm/php-css-parser" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="nepcha-analytics" level="application" />
+    <orderEntry type="library" name="42d5adcbca" level="application" />
+    <orderEntry type="library" name="buttons" level="application" />
   </component>
 </module>

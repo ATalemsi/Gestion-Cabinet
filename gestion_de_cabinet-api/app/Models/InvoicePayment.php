@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class InvoicePayment extends Model
 {
     use HasFactory;
-    protected $fillable = ['client_id', 'amount', 'type', 'payment_status'];
+    use SoftDeletes;
 
-    public function client()
+    protected $fillable = ['rendez_vouses_id', 'amount', 'payment_status'];
+
+    public function rendezVous()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(RendezVous::class, 'rendez_vouses_id');
     }
 }
