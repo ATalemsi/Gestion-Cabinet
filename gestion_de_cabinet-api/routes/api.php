@@ -60,6 +60,14 @@ Route::middleware('auth:sanctum')->get('/clients/search',[ClientController::clas
 Route::middleware('auth:sanctum')->put('/update/{patientId}',[ClientController::class ,'updateClient']);
 Route::middleware('auth:sanctum')->delete('/delete/patient/{patientId}',[ClientController::class ,'softDelete']);
 Route::middleware('auth:sanctum')->post('/upload/document/{patientId}',[ClientController::class ,'uploadDocument']);
+Route::middleware('auth:sanctum')->get('/patient/documents/{patientId}',[ClientController::class ,'getDocumentsPatient']);
+Route::middleware('auth:sanctum')->delete('/delete/document/{patientId}',[ClientController::class ,'deleteDocument']);
+Route::middleware('auth:sanctum')->get('/statistics', [AdminController::class, 'statistics']);
+Route::middleware('auth:sanctum')->get('/print/rapport/{rapportId}', [AdminController::class, 'getRapportInfo']);
+
+
+
+
 
 //Gere rendez-vous
 Route::middleware('auth:sanctum')->get('/index/rendez-vous',[SecretaryController::class ,'index']);

@@ -42,7 +42,7 @@ class SecretaryController extends Controller
             $request->validate([
                 'nom' => 'required|string',
                 'prenom' => 'nullable|string',
-                'cin' => 'nullable|string|unique:rendez_vouses,cin',
+                'cin' => 'nullable|string',
                 'date_heure' => ['required', new CustomDateFormat, new UniqueDateControl,new AfterNowWithTime()], // Ensure the date_heure is after or equal to current date and time
                 'mutuelles' => 'nullable|string',
                 'statut' => 'nullable|in:nouveau,pris en charge,terminé,reporté',

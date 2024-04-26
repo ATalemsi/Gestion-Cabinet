@@ -10,7 +10,7 @@ class ClientDocument extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['client_id', 'nom_document', 'document'];
+    protected $fillable = ['client_id', 'document', 'nom_document'];
 
     public function client()
     {

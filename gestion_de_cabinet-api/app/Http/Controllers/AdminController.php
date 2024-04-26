@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\ClientReport;
+use App\Models\InvoicePayment;
+use App\Models\RendezVous;
 use App\Models\Report;
 use App\Models\SalleAttente;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use PDOException;
 
@@ -228,4 +231,56 @@ class AdminController extends Controller
         }
 
     }
+    public function statistics()
+    {
+        try {
+            $today = Carbon::today();
+
+            $totalAmount = InvoicePayment::sum('amount');
+
+
+
+
+            // Number of patients in waiting room with appointments for today
+            $patientsHasRendezVousToday = RendezVous::where('date_heure', '>=', $today)->count();
+
+
+
+            $averagePaymentAmount = InvoicePayment::avg('amount');
+
+
+            $totalPatients = Client::count();
+
+
+            $patientsInSalleAttente = SalleAttente::count();
+
+            return response()->json([
+                'totalAmount' => $totalAmount,
+                'patientsInWaitingRoom' => $patientsHasRendezVousToday,
+                'averagePaymentAmount' => $averagePaymentAmount,
+                'totalPatients' => $totalPatients,
+                'patientsInSalleAttente' => $patientsInSalleAttente,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    public function getRapportInfo($rapportId)
+    {
+        try {
+            $query = ClientReport::query()
+                ->join('clients', 'client_reports.client_id', '=', 'clients.id')
+                ->where('client_reports.id', $rapportId);
+
+            $report = $query->select( 'clients.*','client_reports.*')->get()->first();
+
+            if (!$report) {
+                return response()->json(['error' => 'Rapport not found'], 404);
+            }
+            return response()->json(['rapport' => $report]);
+        } catch (\PDOException $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

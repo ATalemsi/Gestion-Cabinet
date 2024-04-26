@@ -117,7 +117,11 @@ export default {
   },
   created() {
     if (localStorage.getItem('token') !== '' && localStorage.getItem('token') !== null) {
-      this.$router.push('/dashboard');
+      if (localStorage.getItem('role') === 'admin') {
+        this.$router.push('/dashboard');
+      } else if (localStorage.getItem('role') === 'secretary') {
+        this.$router.push('/salle-attend');
+      }
     }
   },
   methods: {
@@ -135,9 +139,9 @@ export default {
 
             // Check user role and redirect accordingly
             if (response.data.role === 'admin') {
-              this.$router.push('/dashboard'); // Redirect to dashboard for admin
+              this.$router.push('/dashboard');
             } else if (response.data.role === 'secretary') {
-              this.$router.push('/salle-attend'); // Redirect to salle attende for secretary
+              this.$router.push('/salle-attend');
             }
           })
           .catch((error) => {

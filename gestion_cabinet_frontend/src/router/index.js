@@ -128,6 +128,11 @@ const router = createRouter({
       meta: { requiresAuth: true, roles: ['admin'] },
       component: () => import('../views/EditRapport.vue')
     },
+    {
+      path: '/print/rapport/:id',
+      name: 'PrintRapport',
+       component: () => import('../views/PrintRapport.vue')
+    }
   ]
 })
 

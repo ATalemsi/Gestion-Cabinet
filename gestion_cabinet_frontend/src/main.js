@@ -28,26 +28,28 @@ function isToken() {
     return !!token
 }
 router.beforeEach((to, from, next) => {
-    const isAuthenticated = isToken();
+    const isAuthenticated = localStorage.getItem('token');
     const userRole = localStorage.getItem('role');
 
     if (to.meta.requiresAuth) {
         if (!isAuthenticated) {
-            next('/')
+
+            next('/');
         } else {
 
             if (to.meta.roles.includes(userRole)) {
-
                 next();
             } else {
 
-                next('/unauthorized');
+                next('salle-attend');
             }
         }
     } else {
+        
         next();
     }
 });
+
 
 const app = createApp(App)
 

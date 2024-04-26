@@ -2,7 +2,6 @@
 
 <template>
   <Layout>
-    <!-- Navbar -->
     <nav
         class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all shadow-none duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start"
         navbar-main
@@ -10,19 +9,18 @@
     >
       <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
         <nav>
-          <!-- breadcrumb -->
           <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
             <li class="leading-normal text-sm">
-              <a class="opacity-50 text-slate-700" href="javascript:;">Pages</a>
+              <a class="opacity-50 text-slate-700">Pages</a>
             </li>
             <li
                 class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
                 aria-current="page"
             >
-              Payment Attente
+              rapport
             </li>
           </ol>
-          <h6 class="mb-0 font-bold capitalize">Payment Attente</h6>
+          <h6 class="mb-0 font-bold capitalize">Rapport de Patient</h6>
         </nav>
 
         <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -31,7 +29,6 @@
           <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
             <li class="flex items-center pl-4 xl:hidden">
               <a
-                  href="javascript:"
                   class="block p-0 transition-all ease-nav-brand text-sm text-slate-500"
                   sidenav-trigger
               >
@@ -151,7 +148,7 @@
                         <i class="fas fa-edit"></i> Modifier
                       </button>
                       <button @click="imprimerRapport(rapport.id)" class="mr-8 text-xs font-semibold leading-tight text-green-400 pr-2 mr-2 bg-green-100 rounded-lg px-2 py-1">
-                        <i class="fas fa-plus"></i> Imprimeer
+                        <i class="fas fa-plus"></i> Imprimer
                       </button>
                       <button @click="softDeleteRapport(rapport.id)" class="mr-8 text-xs font-semibold leading-tight text-red-800 pr-2 bg-red-100 rounded-lg px-2 py-1">
                         <i class="fas fa-trash-alt"></i> supprimer
@@ -227,6 +224,9 @@ export default {
     searchRapport() {
       this.fetchRapport();
     },
+    imprimerRapport(rapportId){
+      this.$router.push('/print/rapport/' + rapportId);
+    }
   }
 }
 </script>

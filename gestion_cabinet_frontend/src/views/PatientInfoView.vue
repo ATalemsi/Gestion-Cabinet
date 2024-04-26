@@ -102,21 +102,45 @@
               <h6 class="mb-0">Document de Maladie</h6>
             </div>
             <div class="flex-auto p-4">
+              <div v-if="patientDocuments.length === 0">
+                <p>No documents available for this patient.</p>
+              </div>
+              <div v-else>
               <ul class="flex flex-col pl-0 mb-0 rounded-lg">
-                <li class="relative flex items-center px-0 py-2 mb-2 bg-white border-0 rounded-t-lg text-inherit">
-                  <div class="inline-flex items-center justify-center w-12 h-12 mr-4 text-white transition-all duration-200 text-base ease-soft-in-out rounded-xl">
-                    <img src="../assets/img/kal-visuals-square.jpg" alt="kal" class="w-full shadow-soft-2xl rounded-xl" />
+                <li  v-for="(doc, index) in patientDocuments" :key="index" class="relative flex items-center px-0 py-2 mb-2 bg-white border-0 rounded-t-lg text-inherit">
+                  <div class="inline-flex items-center justify-center w-12 h-12 mr-4  transition-all duration-200  ease-soft-in-out rounded-xl ">
+                    <i class=" text-4xl  fas fa-file-pdf"></i>
                   </div>
-                  <div class="flex flex-col items-start justify-center">
-                    <h6 class="mb-0 leading-normal text-sm">Sophie B.</h6>
-                    <p class="mb-0 leading-tight text-xs">Hi! I need more information..</p>
-                  </div>
-                  <a class="inline-block py-3 pl-0 pr-4 mb-0 ml-auto font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in hover:scale-102 hover:active:scale-102 active:opacity-85 text-fuchsia-500 hover:text-fuchsia-800 hover:shadow-none active:scale-100" href="javascript:;">Reply</a>
+
+                  <a :href="getImageUrl(doc.document)" target="_blank" class="flex flex-col items-start justify-center flex-1">
+                    <h6 class="mb-0 leading-normal text-sm">{{ doc.nom_document }}</h6>
+                  </a>
+
+                  <button @click="softDeleteDocuments(doc.id)" class="inline-block px-3 py-1 text-xs leading-6 text-white uppercase transition bg-red-500 rounded shadow hover:bg-red-600 focus:outline-none">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
                 </li>
               </ul>
+             </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="max-w-full mx-auto mt-6 px-6 py-4 bg-white rounded-2xl shadow-soft-xl">
+        <h2 class="text-xl font-bold mb-4">Upload Document</h2>
+        <form enctype="multipart/form-data" @submit.prevent="submitForm" class="flex flex-col space-y-4">
+          <div>
+            <label for="nom_document" class="block text-sm font-medium text-gray-700">Document Name</label>
+            <input type="text" v-model="formData.nom_document" id="nom_document" name="nom_document" class="block w-1/2 border-0 bg-transparent py-2 pl-1 text-gray-900 placeholder:text-gray-400 ring-1 ring-inset ring-gray-300 focus:ring-0 sm:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <span v-if="errors.nom_document" class="text-red-500 text-xs">{{ errors.nom_document[0] }}</span>
+          </div>
+          <div>
+            <label for="document" class="block text-sm font-medium text-gray-700">Document File</label>
+            <input @change="handleFileChange" type="file" id="document" name="document" class="p-6 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <span v-if="errors.document" class="text-red-500 text-xs">{{ errors.document[0] }}</span>
+          </div>
+          <button type="submit" class="inline-block px-6 py-2 text-xs font-semibold leading-6 text-center text-white uppercase transition bg-fuchsia-500 rounded shadow ripple hover:shadow-lg hover:bg-fuchsia-600 focus:outline-none">Upload</button>
+        </form>
       </div>
     </div>
   </Layout>
@@ -127,7 +151,7 @@ import axios from 'axios';
 import Layout from '../components/Layout-aside.vue';
 
 export default {
-  name: 'EditPatient',
+  name: 'ProfileInfoView',
   components: {
     Layout
   },
@@ -147,11 +171,19 @@ export default {
         evolution: '',
         imagerie: '',
         bilan: ''
-      }
+      },
+      formData: {
+        nom_document: '',
+        document: null,
+      },
+      errors: {},
+
+      patientDocuments: []
     };
   },
   mounted() {
-    this.loadClientinfo()
+    this.loadClientinfo();
+    this.loadPatientDocuments();
     console.log(this.$route.params.id)
   },
   methods: {
@@ -167,6 +199,59 @@ export default {
           .catch((error) => {
             console.error('Error fetching old Patient information:', error)
           })
+    },
+    submitForm() {
+      const formData = new FormData();
+      formData.append('nom_document', this.formData.nom_document);
+      formData.append('document', this.formData.document);
+
+      axios.post(`http://localhost:8000/api/upload/document/${this.$route.params.id}`, formData)
+          .then((response) => {
+            if (response && response.data) {
+              console.log('Additional data from server:', response.data);
+              this.loadPatientDocuments();
+              this.formData.nom_document = '';
+              this.errors= '';
+
+              document.getElementById('document').value = null;
+
+            }
+          })
+          .catch(error => {
+            if (error.response && error.response.status === 422) {
+              this.errors = error.response.data.error;
+              console.log('Validation Error', this.errors);
+            } else {
+              console.error('Error creating rendezvous:', error.response.data.error);
+            }
+          });
+    },
+    loadPatientDocuments() {
+
+      axios.get(`http://localhost:8000/api/patient/documents/${this.$route.params.id}`)
+          .then(response => {
+            this.patientDocuments = response.data.documents;
+            console.log('les document de patinet :', this.patientDocuments)
+          })
+          .catch(error => {
+            console.error('Error fetching patient documents:', error);
+          });
+    },
+    handleFileChange(event) {
+      this.formData.document = event.target.files[0]
+    },
+    getImageUrl(PdfFileName) {
+      return `http://localhost:8000/storage/${PdfFileName}`
+    },
+    softDeleteDocuments(documentId) {
+      axios.delete(`http://localhost:8000/api/delete/document/${documentId}`)
+          .then(response => {
+            console.log('Report soft deleted successfully', response.data.message);
+            this.loadPatientDocuments();
+          })
+          .catch(error => {
+            console.error('Report error deleting', error);
+          });
     },
   }
 };

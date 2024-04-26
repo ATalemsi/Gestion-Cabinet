@@ -21,11 +21,4 @@ class Client extends Model
     {
         return $this->hasMany(Report::class);
     }
-
-
-
-    public function rendezVous()
-    {
-        return $this->hasMany(RendezVous::class);
-    }
 }

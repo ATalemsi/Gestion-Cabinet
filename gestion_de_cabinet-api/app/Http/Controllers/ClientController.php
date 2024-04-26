@@ -148,7 +148,7 @@ class ClientController extends Controller
 
             ]);
         } catch (ValidationException $e) {
-            return response()->json(['errors' => $e->errors()], 422);
+            return response()->json(['error' => $e->errors()], 422);
         }
 
         try {
@@ -156,23 +156,39 @@ class ClientController extends Controller
            $client = Client::findOrFail($clientId);
             $clientDocument = new ClientDocument();
             $clientDocument->client_id = $client->id;
+            $clientDocument->nom_document = $request->nom_document;
         if ($request->hasFile('document')) {
             $clientDocument->storedocument($request->file('document'));
         }
-            $clientDocument->nom_document = $request->nom_document;
             $clientDocument->save();
-
             return response()->json(['document upload succesuflly' => $clientDocument]);
         } catch (PDOException $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-
-
-
     }
     public function getDocumentsPatient($clientId)
     {
+        try {
+            // Assuming you're using Laravel's Eloquent ORM
+            $documents = ClientDocument::where('client_id', $clientId)->get();
 
-
+            // Return the documents as JSON response
+            return response()->json(['documents' => $documents]);
+        } catch (\Exception $e) {
+            // Handle the exception
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
+    public function deleteDocument($documentId)
+    {
+        try {
+            $document = ClientDocument::findOrFail($documentId);
+            $document->delete();
+            return response()->json(['message' => ' document deleted successfully']);
+        } catch (PDOException $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
 }
