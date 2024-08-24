@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     fetchRendezVousData() {
-      axios.get('http://localhost:8000/api/all/rendez-vous')
+      axios.get('https://api.majrinadiapsychiatre.com/api/all/rendez-vous')
           .then(response => {
             this.rendezVousList = response.data.rendez_vous;
           })
@@ -79,7 +79,7 @@ export default {
       formData.append('payment_status', this.paymentStatus);
       formData.append('rendez_vouses_id', this.selectedClientId);
 
-      axios.post('http://localhost:8000/api/add/payment', formData)
+      axios.post('https://api.majrinadiapsychiatre.com/api/add/payment', formData)
           .then(response => {
             console.log('Payment created successfully', response.data);
             this.$router.push('/payment-invoice');

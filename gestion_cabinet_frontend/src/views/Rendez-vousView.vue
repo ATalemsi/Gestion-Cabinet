@@ -24,37 +24,7 @@
           </ol>
           <h6 class="mb-0 font-bold capitalize">Rendez-vous</h6>
         </nav>
-
-        <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-          <div class="flex items-center md:ml-auto md:pr-4">
-            <div
-                class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease-soft"
-            >
-          </div>
-          <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
-            <li class="flex items-center pl-4 xl:hidden">
-              <a
-                  href="javascript:"
-                  class="block p-0 transition-all ease-nav-brand text-sm text-slate-500"
-                  sidenav-trigger
-              >
-                <div class="w-4.5 overflow-hidden">
-                  <i
-                      class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"
-                  ></i>
-                  <i
-                      class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"
-                  ></i>
-                  <i
-                      class="ease-soft relative block h-0.5 rounded-sm bg-slate-500 transition-all"
-                  ></i>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
        </div>
-      </div>
     </nav>
     <div class="w-full px-6 py-6 mx-auto">
       <!-- table 1 -->
@@ -71,7 +41,7 @@
               <div class="flex items-center">
                 <input type="text" v-model="searchQuery" placeholder="Search by CIN..." class="border-gray-200 border p-2 rounded-xl mr-2 focus:outline-none" />
                 <button @click="searchRendez_vous" class="bg-gray-200 text-gray-600 font-semibold py-2 px-3 rounded-xl mr-2">
-                  Search
+                  Chercher
                 </button>
                 <router-link
                     class="bg-gradient-to-tl from-purple-700 to-pink-500 text-white font-semibold py-2 px-4 rounded-xl cursor-pointer"
@@ -216,9 +186,8 @@ export default {
     this.fetchRendez_vous();
   },
   watch: {
-    // Watch for changes in the searchQuery data property
+    
     searchQuery(newSearchQuery) {
-      // If the search query is cleared (becomes empty), fetch all rendez-vous data
       if (!newSearchQuery.trim()) {
         this.fetchRendez_vous();
       }
@@ -226,7 +195,7 @@ export default {
   },
   methods: {
     fetchRendez_vous() {
-      let url = 'http://localhost:8000/api/index/rendez-vous';
+      let url = 'https://api.majrinadiapsychiatre.com/api/index/rendez-vous';
       if (this.searchQuery) {
         url += `?cin=${this.searchQuery}`;
       }
@@ -243,7 +212,7 @@ export default {
       this.$router.push('/edit/rendez-vous/' + rendezId);
     },
     softDeleteRendez_vous(rendezId) {
-      axios.delete(`http://localhost:8000/api/cancel/rendez-vous/${rendezId}`)
+      axios.delete(`https://api.majrinadiapsychiatre.com/api/cancel/rendez-vous/${rendezId}`)
           .then(response => {
             console.log('Rendez-vous soft deleted successfully', response.data);
             this.loadRendez_Vous();

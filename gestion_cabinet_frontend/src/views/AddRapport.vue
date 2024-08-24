@@ -13,7 +13,6 @@
                 <option value="" disabled selected>Choisi type</option>
                 <option value="medical_report">Rapport Médicale</option>
                 <option value="medical_certificate">certificat Médicale</option>
-                <option value="ordonnances">Ordonnances</option>
               </select>
               <span v-if="errors.type" class="text-red-500 text-xs">{{ errors.type[0] }}</span>
             </div>
@@ -72,7 +71,7 @@ export default {
   },
   methods: {
     fetchClientData() {
-      axios.get('http://localhost:8000/api/index/patient')
+      axios.get('https://api.majrinadiapsychiatre.com/api/index/patient')
           .then(response => {
             this.clientList = response.data.clients;
           })
@@ -87,7 +86,7 @@ export default {
         client_id: this.client_id
       };
 
-      axios.post('http://localhost:8000/api/addmanualreport', formData)
+      axios.post('https://api.majrinadiapsychiatre.com/api/addmanualreport', formData)
           .then(response => {
             console.log('Report created successfully', response.data);
             this.$router.push('/rapport');

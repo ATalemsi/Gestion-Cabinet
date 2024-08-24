@@ -28,7 +28,7 @@
           <div class="sm:col-span-6 md:col-span-3">
             <label for="date_heure" class="block text-sm font-medium leading-6 text-gray-900">Date et heure</label>
             <div class="mt-2">
-              <input v-model="dateHeure" type="datetime-local" name="date_heure" id="date_heure" class="block w-full border-0 bg-transparent py-2 pl-1 text-gray-900 placeholder:text-gray-400 ring-1 ring-inset ring-gray-300 focus:ring-0 sm:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input v-model="date_heure" type="datetime-local" name="date_heure" id="date_heure" class="block w-full border-0 bg-transparent py-2 pl-1 text-gray-900 placeholder:text-gray-400 ring-1 ring-inset ring-gray-300 focus:ring-0 sm:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               <span v-if="errors.date_heure" class="text-red-500 text-xs">{{ errors.date_heure[0] }}</span>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default {
       nom: '',
       prenom: '',
       cin: '',
-      dateHeure: '',
+      date_heure: '',
       mutuelles: '',
       statut: 'nouveau',
       type_patient: 'nouveau',
@@ -99,13 +99,13 @@ export default {
         nom: this.nom,
         prenom: this.prenom,
         cin: this.cin,
-        date_heure: this.dateHeure,
+        date_heure: this.date_heure,
         mutuelles: this.mutuelles,
         statut: this.statut,
         type_patient: this.type_patient
       };
 
-      axios.post('http://localhost:8000/api/addrendez-vous', formData)
+      axios.post('https://api.majrinadiapsychiatre.com/api/addrendez-vous', formData)
           .then(response => {
             console.log('Rendezvous created successfully', response.data);
             this.$router.push('/rendez-vous');

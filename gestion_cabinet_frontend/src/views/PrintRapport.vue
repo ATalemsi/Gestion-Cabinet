@@ -1,55 +1,85 @@
 <template>
-  <Layout>
- <div class="w-full px-6 py-6 mx-auto">
-  <div class="container">
-    <div class="header">
-      <h1>Information génerale</h1>
-    </div>
-    <div class="doctor-info">
-      <div class="info-column">
-        <span>Dr. Nadia Majri</span><br>
-        <span>PSYCIATRE</span><br>
-        <span>Diplome de Master en Neurosciences</span><br>
-        <span>Bd Kennedy, Rés Nassim- N°17 </span><br>
-        <span>Appt N° 05, 3éme étage-safi</span><br>
-        <span>nadiamajri@yahoo.fr</span><br>
-        <span>06-77-23-56-43</span>
+  <router-link
+    to="/dashboard"
+    class="mx-6 inline-block mt-4 py-2 px-4 rounded-lg text-white bg-gradient-to-r from-red-500 via-pink-600 to-pink-700 hover:from-red-600 hover:via-pink-700 hover:to-pink-800 focus:outline-none mx-auto block text-center"
+  >
+    Retour au tableau de bord
+  </router-link>
+  <div
+    class="text-xs relative bg-white p-8 border border-gray-300 rounded-lg shadow-lg mx-auto max-w-3xl"
+  >
+    <img
+      src="../assets/img/LogoCabinet.png"
+      alt="Logo"
+      class="absolute inset-0 w-full h-full object-cover object-center opacity-20 z-0"
+    />
+    <div class="relative z-10">
+      <div class="header flex justify-between items-center mb-8">
+        <div class="left-header w-1/3 text-center">
+          <span class="block mb-2">الطبيبة نادية ماجري</span>
+          <span class="block mb-2">طبيبة اختصاصية في الأمراض</span>
+          <span class="block mb-2">النفسية والعقلية</span>
+          <span class="block mb-2">حاملة شهادة الماجستير في العلوم العصبية</span>
+          <span class="block mb-2">خريجة كلية الطب بالدار البيضاء</span>
+          <span class="block mb-2">طبيبة سابقة بالمستشفى الجامعي ابن رشد</span>
+          <span class="block">طبيبة سابقة بمستشفى محمد الخامس - آسفي</span>
+        </div>
+        <div class="center-header w-1/3 text-center">
+          <img src="../assets/img/LogoCabinet.png" alt="Logo" class="w-24 mx-auto mb-4" />
+          <h1 class="text-2xl font-semibold text-purple-700">{{ reportContent.type }}</h1>
+        </div>
+        <div class="right-header w-1/3 text-center">
+          <span class="block mb-2">Docteur Nadia Majri</span>
+          <span class="block mb-2">PSYCHIATRE</span>
+          <span class="block mb-2">Diplôme de Master en Neurosciences</span>
+          <span class="block mb-2">Lauréate de la Faculté de Médecine de Casablanca</span>
+          <span class="block mb-2">Ex. Psychiatre au CHU Ibn Rochd</span>
+          <span class="block">Ex. Psychiatre Hôpital Med-V - SAFI</span>
+        </div>
       </div>
-    </div>
-    <div class="patient-info">
-      <h2>Patient Information: </h2><br>
-      <span><strong>Nom De Patient:</strong> {{reportContent.nom}} {{reportContent.prenom}}</span><br>
-      <span><strong>CIN:</strong> {{reportContent.cin}} </span><br>
-      <span><strong>Telephone : </strong> {{reportContent.telephone}}</span><br>
-    </div>
-    <div class="report">
-      <div class="header">
-        <h1>Rapport Médicale</h1>
-      </div>
-      <div class="objective">
-        <h2>Type de rapport : </h2>
-        <p>{{ reportContent.type}}</p>
-      </div>
-      <div class="content">
-        <h2>Contenue de Rapport:</h2>
-        <p>{{reportContent.content_report}}</p>
-      </div>
-    </div>
+      <div>
+        <div class="patient-info mb-8 text-center">
+          <span class="block text-lg font-medium"
+            >{{ reportContent.nom }} {{ reportContent.prenom }}</span
+          >
+          <span class="block text-sm text-gray-600">{{ reportContent.cin }}</span>
+        </div>
 
-    <button class="print-button" @click="printReport">Print this report</button>
+        <div class="content mb-8 text-center">
+          <h2 class="text-xl font-bold text-gray-800 mb-4">Contenu du rapport:</h2>
+          <p class="text-gray-800">{{ reportContent.content_report }}</p>
+        </div>
+
+        <p class="signature text-right mb-6">SAFI, le __________________</p>
+        <div class="footer text-center border-t border-gray-300 pt-4 mt-4">
+          <p class="text-sm text-gray-600 mb-1">
+            Bd Kennedy, Rés Nassim- N°17, Appt N° 05, 3ème étage-SAFI
+          </p>
+          <p class="text-sm text-gray-600">
+            Email: nadia.majri@yahoo.fr | Téléphone: 06-77-23-56-43
+          </p>
+        </div>
+
+        <button
+          class="print-button mt-8 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none block mx-auto"
+          @click="printReport"
+        >
+          Imprimer ce rapport
+        </button>
+      </div>
+    </div>
   </div>
- </div>
-</Layout>
 </template>
+
 <script>
-import Layout from "@/components/Layout-aside.vue";
-import axios from 'axios';
+import Layout from '@/components/Layout-aside.vue'
+import axios from 'axios'
 export default {
   name: 'RapportView',
   components: {
     Layout
   },
-  data(){
+  data() {
     return {
       reportContent: {
         nom: '',
@@ -57,116 +87,38 @@ export default {
         cin: '',
         telephone: '',
         type: '',
-        content_report: '',
+        content_report: ''
       }
     }
   },
   mounted() {
-    this.rapportData();
-    console.log(this.$route.params.id)
+    this.rapportData()
   },
-  methods:{
+  methods: {
     rapportData() {
-      axios.get(`http://localhost:8000/api/print/rapport/${this.$route.params.id}`)
-          .then(response => {
-            this.reportContent = response.data.rapport;
-            console.log('add',response.data.rapport)
-          })
-          .catch(error => {
-            console.error('Error fetching report content:', error);
-          });
+      axios
+        .get(`https://api.majrinadiapsychiatre.com/api/print/rapport/${this.$route.params.id}`)
+        .then((response) => {
+          this.reportContent = response.data.rapport
+        })
+        .catch((error) => {
+          console.error('Error fetching report content:', error)
+        })
     },
+    printReport() {
+      window.print()
+    }
   }
 }
 </script>
-<script setup>
-const printReport = () => {
-  window.print();
-}
-</script>
+
 <style scoped>
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  color: #141727;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.header h1 {
-  margin: 0;
-  color: #333;
-}
-
-.doctor-info {
-  display: block;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-.patient-info h2{
-  color: #3a416f;
-  font-weight: bold;
-  font-size: 17px;
-  margin-top: 1.5rem;
-}
-.info-column {
-  margin-right: 20px;
-}
-
-.patient-info {
-  margin-bottom: 20px;
-}
-
-.report {
-  border-top: 1px solid #ccc;
-  padding-top: 20px;
-}
-
-.objective h2 {
-  color: #333;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.content{
-  margin-top: 1rem;
-}
-.content h2{
-  color: #333;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.content p {
-  line-height: 1.6;
-
-}
-.print-button:hover {
-  background-color: #0056b3;
-}
-.print-button {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* CSS for print view */
 @media print {
   .print-button {
     display: none; /* Hide the button in print view */
+  }
+  .burger-menu {
+    display: none;
   }
 }
 </style>

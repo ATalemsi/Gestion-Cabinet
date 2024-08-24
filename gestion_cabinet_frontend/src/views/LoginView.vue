@@ -77,8 +77,12 @@
               >
                 <div
                   class="absolute inset-x-0 top-0 z-0 h-full -ml-16 bg-cover skew-x-10"
-                  style="background-image: url('./src/assets/img/curved-images/curved6.jpg')"
-                ></div>
+                >
+                <img
+                  src="https://res.cloudinary.com/dz4pww2qv/image/upload/v1723481148/vydb2uion7q23obrvsnc.jpg"
+                  alt="Curved Background"
+                />
+              </div>
               </div>
             </div>
           </div>
@@ -132,7 +136,7 @@ export default {
         password: this.password
       };
       axios
-          .post('http://localhost:8000/api/login', payload)
+          .post('https://api.majrinadiapsychiatre.com/api/login', payload)
           .then((response) => {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('role', response.data.role);

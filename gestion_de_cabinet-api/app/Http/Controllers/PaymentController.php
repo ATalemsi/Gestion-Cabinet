@@ -18,31 +18,30 @@ class PaymentController extends Controller
         if ($request->has('cin')) {
             $query->where('rendez_vouses.cin', 'like', '%' . $request->input('cin') . '%');
         }
-        $payments = $query->select('rendez_vouses.*','invoice_payments.*')->get();
+        $payments = $query->select('rendez_vouses.*', 'invoice_payments.*')->get();
 
         return response()->json(['payments' => $payments]);
-
     }
     public function create(Request $request)
     {
-      try {
-        $request->validate([
-            'amount' => 'required|numeric|min:0',
-            'payment_status' => 'required|in:pending,paid',
-            'rendez_vouses_id' => 'required|exists:rendez_vouses,id',
-        ]);
-      } catch (ValidationException $e) {
-          return response()->json(['error' => $e->errors()], 422);
-      }
         try {
-        // Create a new invoice or payment record
-        $invoiceOrPayment = new InvoicePayment();
-        $invoiceOrPayment->amount = $request->amount;
-        $invoiceOrPayment->payment_status = $request->payment_status;
-        $invoiceOrPayment->rendez_vouses_id = $request->rendez_vouses_id;
-        $invoiceOrPayment->save();
+            $request->validate([
+                'amount' => 'required|numeric|min:0',
+                'payment_status' => 'required|in:pending,paid',
+                'rendez_vouses_id' => 'required|exists:rendez_vouses,id',
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->errors()], 422);
+        }
+        try {
+            // Create a new invoice or payment record
+            $invoiceOrPayment = new InvoicePayment();
+            $invoiceOrPayment->amount = $request->amount;
+            $invoiceOrPayment->payment_status = $request->payment_status;
+            $invoiceOrPayment->rendez_vouses_id = $request->rendez_vouses_id;
+            $invoiceOrPayment->save();
 
-          return response()->json(['message' => 'Invoice/payment updated successfully', 'data' => $invoiceOrPayment]);
+            return response()->json(['message' => 'Invoice/payment updated successfully', 'data' => $invoiceOrPayment]);
         } catch (PDOException $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -61,24 +60,33 @@ class PaymentController extends Controller
     public function update(Request $request, $id)
     {
         try {
-        $request->validate([
-            'amount' => 'required|numeric|min:0',
-            'payment_status' => 'required|in:pending,paid',
-            'rendez_vouses_id' => 'required|exists:rendez_vouses,id',
-        ]);
+            $request->validate([
+                'amount' => 'required|numeric|min:0',
+                'payment_status' => 'required|in:pending,paid',
+                // Do not validate 'rendez_vouses_id' if it's not present in the request
+            ]);
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 422);
         }
 
         try {
-
             $invoiceOrPayment = InvoicePayment::findOrFail($id);
+
+            // Update fields only if they are present in the request
             $invoiceOrPayment->amount = $request->amount;
             $invoiceOrPayment->payment_status = $request->payment_status;
-            $invoiceOrPayment->rendez_vouses_id = $request->rendez_vouses_id;
+
+            // Only update 'rendez_vouses_id' if it's present in the request
+            if ($request->has('rendez_vouses_id')) {
+                $invoiceOrPayment->rendez_vouses_id = $request->rendez_vouses_id;
+            }
+
             $invoiceOrPayment->save();
 
-        return response()->json(['message' => 'Invoice/payment updated successfully', 'data' => $invoiceOrPayment]);
+            return response()->json([
+                'message' => 'Invoice/payment updated successfully',
+                'data' => $invoiceOrPayment
+            ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

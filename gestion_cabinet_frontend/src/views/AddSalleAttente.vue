@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     fetchRendezVousData() {
-      axios.get('http://localhost:8000/api/all/rendez-vous')
+      axios.get('https://api.majrinadiapsychiatre.com/api/all/rendez-vous')
           .then(response => {
             this.rendezVousList = response.data.rendez_vous;
           })
@@ -79,7 +79,7 @@ export default {
       formData.append('heure_controle', this.heureControle);
       formData.append('rendez_vouses_id', this.selectedRendezVous);
 
-      axios.post('http://localhost:8000/api/add/salle-attente', formData)
+      axios.post('https://api.majrinadiapsychiatre.com/api/add/salle-attente', formData)
           .then(response => {
             console.log('Salle attente member created successfully', response.data);
             alert('enter dans la salle attente ')

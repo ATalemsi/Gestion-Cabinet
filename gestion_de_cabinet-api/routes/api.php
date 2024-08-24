@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SecretaryController;
+use App\Http\Controllers\OrdonanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,11 @@ Route::middleware('auth:sanctum')->get('/edit/rapport/{rapportId}',[AdminControl
 Route::middleware('auth:sanctum')->put('/update/rapport/{rapportId}',[AdminController::class ,'updateRapport']);
 Route::middleware('auth:sanctum')->delete('/delete/rapport/{rapportId}',[AdminController::class ,'deleteRapport']);
 Route::middleware('auth:sanctum')->get('/client/info/{clientId}',[AdminController::class ,'clientInfo']);
+Route::middleware('auth:sanctum')->post('/ordonances', [OrdonanceController::class, 'createOrdonance']);
+Route::middleware('auth:sanctum')->get('all/ordonnances', [OrdonanceController::class, 'fetchAllOrdonnances']);
+Route::middleware('auth:sanctum')->get('/ordonance/{id}', [OrdonanceController::class, 'fetchOrdonanceById']);
+Route::middleware('auth:sanctum')->get('delete/ordonnance/{id}', [OrdonanceController::class, 'deleteOrdonances']);
+
 
 
 

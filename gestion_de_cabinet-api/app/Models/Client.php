@@ -21,4 +21,9 @@ class Client extends Model
     {
         return $this->hasMany(Report::class);
     }
+
+    public function ordonnances()
+    {
+        return $this->hasMany(Ordonance::class, 'client_id');
+    }
 }

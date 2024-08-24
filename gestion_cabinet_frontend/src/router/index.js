@@ -81,10 +81,22 @@ const router = createRouter({
       component: () => import('../views/RapportView.vue')
     },
     {
+      path: '/ordonance',
+      name: 'ordonance',
+      meta: { requiresAuth: true, roles: ['admin'] },
+      component: () => import('../views/OrdonanceView.vue')
+    },
+    {
       path: '/add/rapport',
       name: 'Addrapport',
       meta: { requiresAuth: true, roles: ['admin'] },
       component: () => import('../views/AddRapport.vue')
+    },
+    {
+      path: '/add/ordonnance',
+      name: 'AddOrdonance',
+      meta: { requiresAuth: true, roles: ['admin'] },
+      component: () => import('../views/AddOrdonance.vue')
     },
     {
       path: '/patient-info/:id',
@@ -132,6 +144,11 @@ const router = createRouter({
       path: '/print/rapport/:id',
       name: 'PrintRapport',
        component: () => import('../views/PrintRapport.vue')
+    },
+    {
+      path: '/print/ordonnance/:id',
+      name: 'PrintOrdonance',
+       component: () => import('../views/PrintOrdonance.vue')
     }
   ]
 })

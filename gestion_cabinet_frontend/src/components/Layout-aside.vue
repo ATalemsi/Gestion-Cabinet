@@ -2,26 +2,25 @@
   <div>
     <!-- Sidebar -->
     <aside
-        class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent"
+      class="sidebar max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent"
     >
-      <div class="h-19.5">
+      <div class="h-19.5 burger-menu">
         <i
           class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
           sidenav-close
         ></i>
         <router-link
-          class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700"
+          class="flex items-center text-sm whitespace-nowrap text-slate-700 transition-all duration-200 ease-nav-brand hover:bg-gray-100 rounded-lg"
           to="/dashboard"
-          target="_blank"
         >
           <img
             src="../assets/img/LogoCabinet.png"
-            class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8"
+            class="w-20 h-20 mr-4 transition-all duration-200 ease-nav-brand object-contain logo"
             alt="main_logo"
           />
-          <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand"
-            >Cabinet Majry</span
-          >
+          <span class="text-xl font-bold text-slate-800 transition-all duration-200 ease-nav-brand">
+            Cabinet Majri
+          </span>
         </router-link>
       </div>
 
@@ -29,10 +28,14 @@
         class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent"
       />
 
-      <div class="items-center block w-auto  overflow-auto  grow basis-full">
+      <div class="items-center block w-auto overflow-auto grow basis-full">
         <ul class="flex flex-col pl-0 mb-0">
+          <h6 class="pl-6 ml-2 mt-4 font-bold leading-tight uppercase text-xs opacity-60">
+            Service
+          </h6>
           <li class="mt-0.5 w-full">
-            <router-link v-if="isAdmin"
+            <router-link
+              v-if="isAdmin"
               class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 hover:rounded-lg hover:text-gray-200"
               to="/dashboard"
             >
@@ -77,7 +80,8 @@
           </li>
 
           <li class="mt-0.5 w-full">
-            <router-link v-if="isAdmin"
+            <router-link
+              v-if="isAdmin"
               class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 hover:rounded-lg hover:text-gray-200"
               to="/clients"
             >
@@ -85,33 +89,33 @@
                 class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"
               >
                 <svg
-                    width="12px"
-                    height="12px"
-                    viewBox="0 0 46 42"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="12px"
+                  height="12px"
+                  viewBox="0 0 46 42"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <title>rappor-support</title>
                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g
-                        transform="translate(-1717.000000, -291.000000)"
-                        fill="#FFFFFF"
-                        fill-rule="nonzero"
+                      transform="translate(-1717.000000, -291.000000)"
+                      fill="#FFFFFF"
+                      fill-rule="nonzero"
                     >
                       <g transform="translate(1716.000000, 291.000000)">
                         <g transform="translate(1.000000, 0.000000)">
                           <path
-                              class="fill-slate-800 opacity-60"
-                              d="M45,0 L26,0 C25.447,0 25,0.447 25,1 L25,20 C25,20.379 25.214,20.725 25.553,20.895 C25.694,20.965 25.848,21 26,21 C26.212,21 26.424,20.933 26.6,20.8 L34.333,15 L45,15 C45.553,15 46,14.553 46,14 L46,1 C46,0.447 45.553,0 45,0 Z"
+                            class="fill-slate-800 opacity-60"
+                            d="M45,0 L26,0 C25.447,0 25,0.447 25,1 L25,20 C25,20.379 25.214,20.725 25.553,20.895 C25.694,20.965 25.848,21 26,21 C26.212,21 26.424,20.933 26.6,20.8 L34.333,15 L45,15 C45.553,15 46,14.553 46,14 L46,1 C46,0.447 45.553,0 45,0 Z"
                           ></path>
                           <path
-                              class="fill-slate-800"
-                              d="M22.883,32.86 C20.761,32.012 17.324,31 13,31 C8.676,31 5.239,32.012 3.116,32.86 C1.224,33.619 0,35.438 0,37.494 L0,41 C0,41.553 0.447,42 1,42 L25,42 C25.553,42 26,41.553 26,41 L26,37.494 C26,35.438 24.776,33.619 22.883,32.86 Z"
+                            class="fill-slate-800"
+                            d="M22.883,32.86 C20.761,32.012 17.324,31 13,31 C8.676,31 5.239,32.012 3.116,32.86 C1.224,33.619 0,35.438 0,37.494 L0,41 C0,41.553 0.447,42 1,42 L25,42 C25.553,42 26,41.553 26,41 L26,37.494 C26,35.438 24.776,33.619 22.883,32.86 Z"
                           ></path>
                           <path
-                              class="fill-slate-800"
-                              d="M13,28 C17.432,28 21,22.529 21,18 C21,13.589 17.411,10 13,10 C8.589,10 5,13.589 5,18 C5,22.529 8.568,28 13,28 Z"
+                            class="fill-slate-800"
+                            d="M13,28 C17.432,28 21,22.529 21,18 C21,13.589 17.411,10 13,10 C8.589,10 5,13.589 5,18 C5,22.529 8.568,28 13,28 Z"
                           ></path>
                         </g>
                       </g>
@@ -172,8 +176,9 @@
 
           <li class="mt-0.5 w-full">
             <router-link
+              to="/rendez-vous"
               class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 hover:rounded-lg hover:text-gray-200"
-             to="/rendez-vous">
+            >
               <div
                 class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"
               >
@@ -267,60 +272,83 @@
             </router-link>
           </li>
           <li class="mt-0.5 w-full">
-            <router-link v-if="isAdmin"
-                class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 hover:rounded-lg hover:text-gray-200"
-                to="/secretary"
+            <router-link
+              v-if="isAdmin"
+              class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 hover:rounded-lg hover:text-gray-200"
+              to="/secretary"
             >
               <div
-                  class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"
+                class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"
               >
-                <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg
+                  width="12px"
+                  height="12px"
+                  viewBox="0 0 40 44"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
                   <title>Secretaire</title>
                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g
+                      transform="translate(-1870.000000, -591.000000)"
+                      fill="#FFFFFF"
+                      fill-rule="nonzero"
+                    >
                       <g transform="translate(1716.000000, 291.000000)">
                         <g transform="translate(154.000000, 300.000000)">
-                          <path class="fill-slate-800 opacity-60" d="M40,40 L36.3636364,40 L36.3636364,3.63636364 L5.45454545,3.63636364 L5.45454545,0 L38.1818182,0 C39.1854545,0 40,0.814545455 40,1.81818182 L40,40 Z"></path>
-                          <path class="fill-slate-800" d="M30.9090909,7.27272727 L1.81818182,7.27272727 C0.814545455,7.27272727 0,8.08727273 0,9.09090909 L0,41.8181818 C0,42.8218182 0.814545455,43.6363636 1.81818182,43.6363636 L30.9090909,43.6363636 C31.9127273,43.6363636 32.7272727,42.8218182 32.7272727,41.8181818 L32.7272727,9.09090909 C32.7272727,8.08727273 31.9127273,7.27272727 30.9090909,7.27272727 Z M18.1818182,34.5454545 L7.27272727,34.5454545 L7.27272727,30.9090909 L18.1818182,30.9090909 L18.1818182,34.5454545 Z M25.4545455,27.2727273 L7.27272727,27.2727273 L7.27272727,23.6363636 L25.4545455,23.6363636 L25.4545455,27.2727273 Z M25.4545455,20 L7.27272727,20 L7.27272727,16.3636364 L25.4545455,16.3636364 L25.4545455,20 Z"></path>
+                          <path
+                            class="fill-slate-800 opacity-60"
+                            d="M40,40 L36.3636364,40 L36.3636364,3.63636364 L5.45454545,3.63636364 L5.45454545,0 L38.1818182,0 C39.1854545,0 40,0.814545455 40,1.81818182 L40,40 Z"
+                          ></path>
+                          <path
+                            class="fill-slate-800"
+                            d="M30.9090909,7.27272727 L1.81818182,7.27272727 C0.814545455,7.27272727 0,8.08727273 0,9.09090909 L0,41.8181818 C0,42.8218182 0.814545455,43.6363636 1.81818182,43.6363636 L30.9090909,43.6363636 C31.9127273,43.6363636 32.7272727,42.8218182 32.7272727,41.8181818 L32.7272727,9.09090909 C32.7272727,8.08727273 31.9127273,7.27272727 30.9090909,7.27272727 Z M18.1818182,34.5454545 L7.27272727,34.5454545 L7.27272727,30.9090909 L18.1818182,30.9090909 L18.1818182,34.5454545 Z M25.4545455,27.2727273 L7.27272727,27.2727273 L7.27272727,23.6363636 L25.4545455,23.6363636 L25.4545455,27.2727273 Z M25.4545455,20 L7.27272727,20 L7.27272727,16.3636364 L25.4545455,16.3636364 L25.4545455,20 Z"
+                          ></path>
                         </g>
                       </g>
                     </g>
                   </g>
                 </svg>
               </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Secretaire</span>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft"
+                >Secretaire</span
+              >
             </router-link>
           </li>
-          <li  v-if="isAdmin" class="mt-0.5 w-full">
-            <h6 class="pl-6 ml-2 font-bold leading-tight uppercase text-xs opacity-60 ">
-              Rapport
-            </h6>
+          <li v-if="isAdmin" class="mt-0.5 w-full">
+            <h6 class="pl-6 ml-2 font-bold leading-tight uppercase text-xs opacity-60">Rapport</h6>
             <router-link
               class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 hover:rounded-lg hover:text-gray-200"
-             to="/rapport">
+              to="/rapport"
+            >
               <div
                 class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"
               >
                 <svg
-                    width="12px"
-                    height="12px"
-                    viewBox="0 0 42 42"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="12px"
+                  height="12px"
+                  viewBox="0 0 42 42"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <title>rapport</title>
                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g
+                      transform="translate(-1869.000000, -293.000000)"
+                      fill="#FFFFFF"
+                      fill-rule="nonzero"
+                    >
                       <g transform="translate(1716.000000, 291.000000)">
                         <g transform="translate(153.000000, 2.000000)">
                           <path
-                              class="fill-slate-800 opacity-60"
-                              d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"
+                            class="fill-slate-800 opacity-60"
+                            d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"
                           ></path>
                           <path
-                              class="fill-slate-800"
-                              d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"
+                            class="fill-slate-800"
+                            d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"
                           ></path>
                         </g>
                       </g>
@@ -333,34 +361,174 @@
               >
             </router-link>
           </li>
-          <li class="mt-0.5 w-full">
-            <button class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-tl hover:from-red-700 hover:to-pink-200 hover:rounded-lg hover:text-gray-200" @click="logout">
-              <a class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <title>spaceship</title>
+          <li v-if="isAdmin" class="mt-0.5 w-full">
+            <router-link
+              class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 hover:rounded-lg hover:text-gray-200"
+              to="/ordonance"
+            >
+              <div
+                class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"
+              >
+                <svg
+                  width="12px"
+                  height="12px"
+                  viewBox="0 0 42 42"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <title>ordonance</title>
                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g
+                      transform="translate(-1869.000000, -293.000000)"
+                      fill="#FFFFFF"
+                      fill-rule="nonzero"
+                    >
                       <g transform="translate(1716.000000, 291.000000)">
-                        <g transform="translate(4.000000, 301.000000)">
+                        <g transform="translate(153.000000, 2.000000)">
                           <path
-                              class="fill-slate-800"
-                              d="M39.3,0.706666667 C38.9660984,0.370464027 38.5048767,0.192278529 38.0316667,0.216666667 C14.6516667,1.43666667 6.015,22.2633333 5.93166667,22.4733333 C5.68236407,23.0926189 5.82664679,23.8009159 6.29833333,24.2733333 L15.7266667,33.7016667 C16.2013871,34.1756798 16.9140329,34.3188658 17.535,34.065 C17.7433333,33.98 38.4583333,25.2466667 39.7816667,1.97666667 C39.8087196,1.50414529 39.6335979,1.04240574 39.3,0.706666667 Z M25.69,19.0233333 C24.7367525,19.9768687 23.3029475,20.2622391 22.0572426,19.7463614 C20.8115377,19.2304837 19.9992882,18.0149658 19.9992882,16.6666667 C19.9992882,15.3183676 20.8115377,14.1028496 22.0572426,13.5869719 C23.3029475,13.0710943 24.7367525,13.3564646 25.69,14.31 C26.9912731,15.6116662 26.9912731,17.7216672 25.69,19.0233333 L25.69,19.0233333 Z"
+                            class="fill-slate-800 opacity-60"
+                            d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"
                           ></path>
-                          <path class="fill-slate-800 opacity-60" d="M1.855,31.4066667 C3.05106558,30.2024182 4.79973884,29.7296005 6.43969145,30.1670277 C8.07964407,30.6044549 9.36054508,31.8853559 9.7979723,33.5253085 C10.2353995,35.1652612 9.76258177,36.9139344 8.55833333,38.11 C6.70666667,39.9616667 0,40 0,40 C0,40 0,33.2566667 1.855,31.4066667 Z"></path>
-                          <path class="fill-slate-800 opacity-60" d="M17.2616667,3.90166667 C12.4943643,3.07192755 7.62174065,4.61673894 4.20333333,8.04166667 C3.31200265,8.94126033 2.53706177,9.94913142 1.89666667,11.0416667 C1.5109569,11.6966059 1.61721591,12.5295394 2.155,13.0666667 L5.47,16.3833333 C8.55036617,11.4946947 12.5559074,7.25476565 17.2616667,3.90166667 L17.2616667,3.90166667 Z"></path>
-                          <path class="fill-slate-800 opacity-60" d="M36.0983333,22.7383333 C36.9280725,27.5056357 35.3832611,32.3782594 31.9583333,35.7966667 C31.0587397,36.6879974 30.0508686,37.4629382 28.9583333,38.1033333 C28.3033941,38.4890431 27.4704606,38.3827841 26.9333333,37.845 L23.6166667,34.53 C28.5053053,31.4496338 32.7452344,27.4440926 36.0983333,22.7383333 L36.0983333,22.7383333 Z"></path>
+                          <path
+                            class="fill-slate-800"
+                            d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"
+                          ></path>
                         </g>
                       </g>
                     </g>
                   </g>
                 </svg>
-              </a>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Deconnexion</span>
+              </div>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft"
+                >Ordonance</span
+              >
+            </router-link>
+          </li>
+          <li class="mt-0.5 w-full">
+            <h6 class="pl-6 ml-2 font-bold leading-tight uppercase text-xs opacity-60">
+              Deconnexion
+            </h6>
+            <button
+              class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:rounded-lg hover:text-gray-200 w-52"
+              @click="logout"
+            >
+              <div
+                class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"
+              >
+                <svg
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="fill-slate-800 opacity-60"
+                >
+                  <path
+                    d="M15 3H4C2.343 3 1 4.343 1 6V18C1 19.657 2.343 21 4 21H15"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M10 17l4-4m0 0l-4-4m4 4H3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft"
+                >Deconnexion</span
+              >
             </button>
           </li>
         </ul>
       </div>
     </aside>
+
+    <nav class="md:hidden bg-white shadow" id="app">
+      <div class="container px-6 py-3 mx-auto">
+        <div class="md:flex justify-between items-center">
+          <!-- left section -->
+          <div class="flex justify-between items-center">
+            <div>
+              <img
+                src="../assets/img/LogoCabinet.png"
+                class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8"
+                alt="main_logo"
+              />
+            </div>
+            <div class="md:hidden">
+              <button
+                type="button"
+                class="text-gray-500 hover:text-gray-600 focus:text-gray-600 focus:outline-none"
+                @click="isOpen = !isOpen"
+              >
+                <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                  <path
+                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex-col mt-4 md:flex-row md:mt-0 md:flex md:items-center"
+            :class="isOpen ? 'flex' : 'hidden'"
+          >
+            <router-link
+              to="/dashboard"
+              v-if="isAdmin"
+              class="text-gray-700 hover:text-white hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-50 text-lg font-medium my-2 px-4 py-2 border border-gray-300 rounded-lg transition-colors duration-300 ease-in-out"
+              >Dashboard</router-link
+            >
+            <router-link
+              to="/clients"
+              v-if="isAdmin"
+              class="text-gray-700 hover:text-white hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-50 text-lg font-medium my-2 px-4 py-2 border border-gray-300 rounded-lg transition-colors duration-300 ease-in-out"
+              >Patient</router-link
+            >
+            <router-link
+              to="/salle-attend"
+              class="text-gray-700 hover:text-white hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-50 text-lg font-medium my-2 px-4 py-2 border border-gray-300 rounded-lg transition-colors duration-300 ease-in-out"
+              >Salle Attend</router-link
+            >
+            <router-link
+              to="/rendez-vous"
+              class="text-gray-700 hover:text-white hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-50 text-lg font-medium my-2 px-4 py-2 border border-gray-300 rounded-lg transition-colors duration-300 ease-in-out"
+              >Rendez-vous</router-link
+            >
+            <router-link
+              to="/payment-invoice"
+              class="text-gray-700 hover:text-white hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-50 text-lg font-medium my-2 px-4 py-2 border border-gray-300 rounded-lg transition-colors duration-300 ease-in-out"
+              >Payment</router-link
+            >
+            <router-link
+              v-if="isAdmin"
+              to="/secretary"
+              class="text-gray-700 hover:text-white hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-50 text-lg font-medium my-2 px-4 py-2 border border-gray-300 rounded-lg transition-colors duration-300 ease-in-out"
+              >Secretary</router-link
+            >
+            <router-link
+              v-if="isAdmin"
+              to="/rapport"
+              class="text-gray-700 hover:text-white hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-50 text-lg font-medium my-2 px-4 py-2 border border-gray-300 rounded-lg transition-colors duration-300 ease-in-out"
+              >Rapport</router-link
+            >
+            <button
+              class="mt-3 md:mt-0 py-2 px-4 text-sm font-semibold text-white bg-gradient-to-r from-red-500 to-pink-500 rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
+              @click="logout"
+            >
+              Deconnexion
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <div
       class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200"
     >
@@ -375,25 +543,24 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      isSidebarVisible: false,
       isAdmin: false,
-    };
+      isOpen: false
+    }
   },
   mounted() {
-    // Retrieve the user's role from local storage
-    const userRole = localStorage.getItem('role');
-    // Check if the user is a secretary
-    this.isAdmin = userRole === 'admin';
+    const userRole = localStorage.getItem('role')
+    this.isAdmin = userRole === 'admin'
   },
   computed: {
     isLoggedIn() {
       return !!localStorage.getItem('token')
-
     }
   },
   methods: {
     async logout() {
       try {
-        await axios.post('http://localhost:8000/api/logout')
+        await axios.post('https://api.majrinadiapsychiatre.com/api/logout')
         localStorage.removeItem('token')
         localStorage.removeItem('role')
         console.log('Logout successful')
