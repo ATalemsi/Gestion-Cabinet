@@ -1,7 +1,5 @@
 <template>
   <Layout>
-    <!-- Navbar -->
-    <!-- Omitted for brevity -->
 
     <div class="w-full px-6 py-6 mx-auto">
       <form @submit.prevent="addSecretary">
@@ -73,7 +71,7 @@ export default {
   methods: {
     addSecretary() {
       axios
-          .post('http://localhost:8000/api/add/secretary', this.formData)
+          .post('https://api.majrinadiapsychiatre.com/api/add/secretary', this.formData)
           .then((response) => {
             this.$router.push('/secretary');
             if (response && response.data) {

@@ -24,32 +24,6 @@
           </ol>
           <h6 class="mb-0 font-bold capitalize">Salle Attente</h6>
         </nav>
-
-        <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-          <div class="flex items-center md:ml-auto md:pr-4">
-          </div>
-          <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
-            <li class="flex items-center pl-4 xl:hidden">
-              <a
-                href="javascript:"
-                class="block p-0 transition-all ease-nav-brand text-sm text-slate-500"
-                sidenav-trigger
-              >
-                <div class="w-4.5 overflow-hidden">
-                  <i
-                    class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"
-                  ></i>
-                  <i
-                    class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"
-                  ></i>
-                  <i
-                    class="ease-soft relative block h-0.5 rounded-sm bg-slate-500 transition-all"
-                  ></i>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
     </nav>
     <div class="w-full px-6 py-6 mx-auto">
@@ -67,7 +41,7 @@
               <div class="flex items-center">
                 <input type="text" v-model="searchQuery" placeholder="Search by CIN..." class="border-gray-200 border p-2 rounded-xl mr-2 focus:outline-none" />
                 <button @click="searchSalle_attente" class="bg-gray-200 text-gray-600 font-semibold py-2 px-3 rounded-xl mr-2">
-                  Search
+                  Chercher
                 </button>
                 <router-link
                     class="bg-gradient-to-tl from-purple-700 to-pink-500 text-white font-semibold py-2 px-4 rounded-xl cursor-pointer"
@@ -205,7 +179,7 @@ export default {
   },
   methods: {
     fetchSalle_attente() {
-      let url = 'http://localhost:8000/api/all/salle-attente';
+      let url = 'https://api.majrinadiapsychiatre.com/api/all/salle-attente';
       if (this.searchQuery) {
         url += `?cin=${this.searchQuery}`;
       }
@@ -222,7 +196,7 @@ export default {
       this.$router.push('/edit/salle/' + salleId);
     },
     softDeleteSalle_attente(salleId) {
-      axios.delete(`http://localhost:8000/api/delete/salle-attente/${salleId}`)
+      axios.delete(`https://api.majrinadiapsychiatre.com/api/delete/salle-attente/${salleId}`)
           .then(response => {
             console.log('person soft deleted successfully from salle attente', response.data);
             this.loadSalle_attente();
@@ -240,7 +214,7 @@ export default {
     formatDate(datetimeString) {
       const datetime = new Date(datetimeString);
       const date = datetime.toISOString().split('T')[0];
-      return date; // Return the formatted date
+      return date; 
     },
   }
 }

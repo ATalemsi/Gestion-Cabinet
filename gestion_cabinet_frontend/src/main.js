@@ -4,7 +4,8 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-axios.defaults.baseURL = 'http://localhost:8000'
+
+axios.defaults.baseURL = 'https://api.majrinadiapsychiatre.com'
 axios.interceptors.request.use(
     function (config) {
         const token = localStorage.getItem('token')

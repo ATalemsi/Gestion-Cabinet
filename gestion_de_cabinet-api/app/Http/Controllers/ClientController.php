@@ -90,7 +90,7 @@ class ClientController extends Controller
             $request->validate([
                 'nom' => 'required|string',
                 'prenom' => 'nullable|string',
-                'cin' => 'nullable|string|unique:clients,cin',
+                'cin' => 'nullable|string|unique:clients,cin,' .$clientId,
                 'telephone' => 'nullable|string',
                 'antecedents' => 'nullable|string',
                 'donnees_biographiques' => 'nullable|string',

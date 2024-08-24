@@ -72,7 +72,7 @@ export default {
     loadRapport() {
       const rapportId = this.$route.params.id
       axios
-          .get(`http://localhost:8000/api/edit/rapport/${rapportId}`)
+          .get(`https://api.majrinadiapsychiatre.com/api/edit/rapport/${rapportId}`)
           .then((response) => {
             this.oldRapport = response.data.rapport
             console.log('Success fetching old Salle attente information:', this.oldRapport)
@@ -83,7 +83,7 @@ export default {
           })
     },
     fetchClientData() {
-      axios.get('http://localhost:8000/api/index/patient')
+      axios.get('https://api.majrinadiapsychiatre.com/api/index/patient')
           .then(response => {
             this.clientList = response.data.clients;
           })
@@ -96,7 +96,7 @@ export default {
       formData.append('_method','PUT');
       formData.append('type', this.oldRapport.type);
       formData.append('content_report', this.oldRapport.content_report);
-      axios.post(`http://localhost:8000/api/update/rapport/${this.$route.params.id}`, formData)
+      axios.post(`https://api.majrinadiapsychiatre.com/api/update/rapport/${this.$route.params.id}`, formData)
           .then(response => {
             console.log('Report updated successfully', response.data);
             this.$router.push('/rapport');

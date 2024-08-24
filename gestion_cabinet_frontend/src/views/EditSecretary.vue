@@ -82,7 +82,7 @@ export default {
     loadSecretary() {
       const secretaryId = this.$route.params.id
       axios
-          .get(`http://localhost:8000/api/editsecretary/${secretaryId}`)
+          .get(`http://api.majrinadiapsychiatre.com/api/editsecretary/${secretaryId}`)
           .then((response) => {
             this.oldSecreatary = response.data.secretaire
             console.log('Success fetching old secretary information information:', this.oldSecreatary)
@@ -102,7 +102,7 @@ export default {
 
 
       axios
-          .post(`http://localhost:8000/api/updatesecretary/${this.$route.params.id}`,formData)
+          .post(`https://api.majrinadiapsychiatre.com/api/updatesecretary/${this.$route.params.id}`,formData)
           .then((response) => {
             console.log('the data updated successfully', response.data);
             this.$router.push('/secretary');

@@ -14,22 +14,6 @@
           </ol>
           <h6 class="mb-0 font-bold capitalize">Dossier Patient</h6>
         </nav>
-
-        <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
-          <div class="flex items-center md:ml-auto md:pr-4">
-            <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
-              <li class="flex items-center pl-4 xl:hidden">
-                <a href="javascript:" class="block p-0 transition-all ease-nav-brand text-sm text-slate-500" sidenav-trigger>
-                  <div class="w-4.5 overflow-hidden">
-                    <i class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
-                    <i class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
-                    <i class="ease-soft relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </nav>
     <div class="w-full px-6 py-6 mx-auto">
@@ -190,7 +174,7 @@ export default {
     loadClientinfo() {
       const ClientId = this.$route.params.id
       axios
-          .get(`http://localhost:8000/api/client/info/${ClientId}`)
+          .get(`https://api.majrinadiapsychiatre.com/api/client/info/${ClientId}`)
           .then((response) => {
             this.clientInfo = response.data.client
             console.log()
@@ -205,7 +189,7 @@ export default {
       formData.append('nom_document', this.formData.nom_document);
       formData.append('document', this.formData.document);
 
-      axios.post(`http://localhost:8000/api/upload/document/${this.$route.params.id}`, formData)
+      axios.post(`https://api.majrinadiapsychiatre.com/api/upload/document/${this.$route.params.id}`, formData)
           .then((response) => {
             if (response && response.data) {
               console.log('Additional data from server:', response.data);
@@ -228,7 +212,7 @@ export default {
     },
     loadPatientDocuments() {
 
-      axios.get(`http://localhost:8000/api/patient/documents/${this.$route.params.id}`)
+      axios.get(`https://api.majrinadiapsychiatre.com/api/patient/documents/${this.$route.params.id}`)
           .then(response => {
             this.patientDocuments = response.data.documents;
             console.log('les document de patinet :', this.patientDocuments)
@@ -241,10 +225,10 @@ export default {
       this.formData.document = event.target.files[0]
     },
     getImageUrl(PdfFileName) {
-      return `http://localhost:8000/storage/${PdfFileName}`
+      return `https://api.majrinadiapsychiatre.com/storage/${PdfFileName}`
     },
     softDeleteDocuments(documentId) {
-      axios.delete(`http://localhost:8000/api/delete/document/${documentId}`)
+      axios.delete(`https://api.majrinadiapsychiatre.com/api/delete/document/${documentId}`)
           .then(response => {
             console.log('Report soft deleted successfully', response.data.message);
             this.loadPatientDocuments();
